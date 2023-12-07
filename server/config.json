@@ -1,21 +1,26 @@
+v2ray Server
 {
   "log":{
-    "loglevel": "warning",
-    "access": "/var/log/v2ray/access.log",
-    "error": "/var/log/v2ray/error.log"
+    "loglevel": "warning"
+    //"access": "/var/log/v2ray/access.log",
+    //"error": "/var/log/v2ray/error.log"
   },
 
   "inbounds": [
     {
-      "port": 16316,
+      "port": 20119,
       "protocol": "vmess",
       "settings": {
         "clients": [
           {
             "id": "a1fd6a2d-84fc-4049-a15c-f9eb9e0b8750",
+            "level": 1,
             "alterId": 0
           }
-        ]
+        ],
+        "detour": {
+          "to": "dynamicPort"
+        }
       },
       "streamSettings": {
         "network": "mkcp",
@@ -27,6 +32,25 @@
             "type": "none"
           }
         }
+      }
+    },
+    {
+      "protocol": "vmess",
+      "port": "10000-60000",
+      "tag": "dynamicPort",
+      "settings": {
+        "default": {
+          "level": 1,
+          "alterId": 32
+        }
+      },
+      "allocate": {
+        "strategy": "random",
+        "concurrency": 2,
+        "refresh": 3
+      },
+      "streamSettings": {
+        "network": "mkcp"
       }
     }
   ],
