@@ -7,8 +7,9 @@
 
   "inbounds": [
     {
-      //"port": 20119,
       "protocol": "vmess",
+      "port": "10000-60000",
+      "tag": "dynamicPort",
       "settings": {
         "clients": [
           {
@@ -16,32 +17,7 @@
             "level": 1,
             "alterId": 0
           }
-        ],
-        "detour": {
-          "to": "dynamicPort"
-        }
-      },
-      "streamSettings": {
-        "network": "mkcp",
-        "kcpSettings": {
-          "uplinkCapacity": 5,
-          "downlinkCapacity": 100,
-          "congestion": true,
-          "header": {
-            "type": "none"
-          }
-        }
-      }
-    },
-    {
-      "protocol": "vmess",
-      "port": "10000-60000",
-      "tag": "dynamicPort",
-      "settings": {
-        "default": {
-          "level": 1,
-          "alterId": 32
-        }
+        ]
       },
       "allocate": {
         "strategy": "random",
@@ -50,6 +26,14 @@
       },
       "streamSettings": {
         "network": "mkcp"
+        "kcpSettings": {
+          "uplinkCapacity": 5,
+          "downlinkCapacity": 100,
+          "congestion": true,
+          "header": {
+            "type": "none"
+          }
+        }
       }
     }
   ],
