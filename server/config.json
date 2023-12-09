@@ -7,6 +7,33 @@
 
   "inbounds": [
     {
+      //"port": 20119,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "a1fd6a2d-84fc-4049-a15c-f9eb9e0b8750",
+            "level": 1,
+            "alterId": 0
+          }
+        ],
+        "detour": {
+          "to": "dynamicPort"
+        }
+      },
+      "streamSettings": {
+        "network": "mkcp",
+        "kcpSettings": {
+          "uplinkCapacity": 5,
+          "downlinkCapacity": 100,
+          "congestion": true,
+          "header": {
+            "type": "none"
+          }
+        }
+      }
+    },
+    {
       "protocol": "vmess",
       "port": "10000-60000",
       "tag": "dynamicPort",
@@ -26,14 +53,12 @@
       }
     }
   ],
-
   "outbounds": [
     {
       "protocol": "freedom",
       "settings": {}
     }
   ],
-
   "dns": {
     "servers": [
       "https+local://1.1.1.1/dns-query",
